@@ -7,8 +7,11 @@
         <p class="quote-day__author">{{ quote.author }}</p>
 
       </div>
-      <button class="quote-day__button" @click="fetchQute()">Refresh</button>
-      <button  @click="copyQute()">Copy</button>
+      <div class="buttons">
+        <button class="quote-day__button" @click="fetchQute()">Refresh</button>
+        <button class="quote-day__button quote-day__button_copy" @click="copyQute()"></button>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -86,11 +89,11 @@ import axios from 'axios';
   max-width: 500px; */
   width: 800px;
   height: 440px;
+  margin-top: 30px;
   padding: 50px 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 
   font-family: 'Montserrat';
   font-style: normal;
@@ -106,6 +109,7 @@ import axios from 'axios';
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .quote-day__text{
@@ -137,11 +141,8 @@ import axios from 'axios';
 }
 
 .quote-day__button {
-  position: absolute;
   width: 368px;
   height: 86px;
-  left: 216px;
-  bottom: 27px;
   background: rgba(217, 217, 217, 0.39);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
@@ -155,9 +156,26 @@ import axios from 'axios';
   line-height: 44px;
   text-transform: uppercase;
   color: #000000;
+  opacity: 0.4;
 }
 
 .quote-day__button:hover {
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  opacity: 1.0;
+}
+
+.quote-day__button_copy{
+  width: 86px;
+  height: 86px;
+  background-image: url('@/img/copy-icon.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.buttons {  
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 </style>
