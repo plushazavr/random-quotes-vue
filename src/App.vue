@@ -8,6 +8,7 @@
 
       </div>
       <button class="quote-day__button" @click="fetchQute()">Refresh</button>
+      <button  @click="copyQute()">Copy</button>
     </div>
   </div>
 </template>
@@ -18,12 +19,12 @@ import axios from 'axios';
   export default {
   data() {
     return {
-      quotes: [],      
+      quotes: [],
+      text: 'helpMe',
     }
   },
-
+  
   methods: {
-
     async fetchQute() {
       try {
         const response = await axios.get('https://favqs.com/api/qotd');        
@@ -32,7 +33,19 @@ import axios from 'axios';
       } catch(e) {
         console.log('Произошла ошибка. Повторите попытку позже')
       }
+    },
+
+    copyQute() {
+      // navigator.clipboard.writeText(this.quotes.quote.body)
+      navigator.clipboard.writeText('"'+ this.quotes.quote.body + '" ' + this.quotes.quote.author)
+        .then(() => {
+          console.log('Text copy')
+        })
+        .catch(err => {
+          console.log('Something went wrong', err);
+        });
     }
+    
   },
 
   mounted() {
